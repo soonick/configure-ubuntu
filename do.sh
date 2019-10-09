@@ -34,6 +34,10 @@ gsettings set org.gnome.shell.extensions.dash-to-dock intellihide false
 # Show battery percentage
 gsettings set org.gnome.desktop.interface show-battery-percentage true
 
+# Don't show icons on desktop
+gsettings set org.gnome.shell.extensions.desktop-icons show-home false
+gsettings set org.gnome.shell.extensions.desktop-icons show-trash false
+
 # Update system
 apt-get update -y
 
