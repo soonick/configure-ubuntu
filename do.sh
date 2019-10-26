@@ -10,6 +10,7 @@ echo '# Aliases' >> ~/.bash_aliases
 echo 'alias c="clear"' >> ~/.bash_aliases
 echo 'alias gs="git status"' >> ~/.bash_aliases
 echo 'alias ga="git add"' >> ~/.bash_aliases
+echo 'alias gd="git diff"' >> ~/.bash_aliases
 echo 'alias gc="git commit"' >> ~/.bash_aliases
 echo 'alias gl="git lg"' >> ~/.bash_aliases
 echo 'alias gpom="git push origin master"' >> ~/.bash_aliases
