@@ -17,9 +17,8 @@ apt-get install \
   vlc -y
 
 # Install vim dependencies
-apt-get install build-essential libncurses-dev libncurses5-dev libgnome2-dev \
-  libgnomeui-dev libgtk2.0-dev libatk1.0-dev libbonoboui2-dev libcairo2-dev \
-  libx11-dev libxpm-dev libxt-dev curl default-jre -y
+apt-get install build-essential libncurses-dev libncurses5-dev libgtk2.0-dev \
+  libatk1.0-dev libcairo2-dev libx11-dev libxpm-dev libxt-dev curl default-jre -y
 
 ##### End of root section
 
