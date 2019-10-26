@@ -45,10 +45,10 @@ echo snap >> ~/.hidden
 echo Desktop >> ~/.hidden
 
 # Gnome keyboard shortcuts
-gsettings set org.gnome.settings-daemon.plugins.media-keys terminal '<Ctrl><Alt>t'
-gsettings set org.gnome.settings-daemon.plugins.media-keys home '<Ctrl><Alt>h'
-gsettings set org.gnome.settings-daemon.plugins.media-keys www '<Ctrl><Alt>w'
-gsettings set org.gnome.settings-daemon.plugins.media-keys screensaver '<Ctrl><Alt>l'
+gsettings set org.gnome.settings-daemon.plugins.media-keys terminal "['<Ctrl><Alt>t']"
+gsettings set org.gnome.settings-daemon.plugins.media-keys home "['<Ctrl><Alt>h']"
+gsettings set org.gnome.settings-daemon.plugins.media-keys www "['<Ctrl><Alt>w']"
+gsettings set org.gnome.settings-daemon.plugins.media-keys screensaver "['<Ctrl><Alt>l']"
 
 # Hide ubuntu dock permanently
 gsettings set org.gnome.shell.extensions.dash-to-dock autohide false
