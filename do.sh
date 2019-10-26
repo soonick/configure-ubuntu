@@ -1,10 +1,32 @@
 #!/usr/bin/env bash
 
-# Should be executed with sudo, otherwise it might stop to ask for password on
-# some steps
+# These script should be executed with sudo, otherwise it might stop to ask for
+# password on some steps
+
+##### This section needs to be run as root
+
+# Update system
+apt-get update -y
+
+# Install some packages
+apt-get install \
+  ubuntu-restricted-extras \
+  gnome-tweak-tool \
+  git \
+  gimp \
+  vlc -y
+
+# Install vim dependencies
+apt-get install build-essential libncurses-dev libncurses5-dev libgnome2-dev \
+  libgnomeui-dev libgtk2.0-dev libatk1.0-dev libbonoboui2-dev libcairo2-dev \
+  libx11-dev libxpm-dev libxt-dev curl default-jre -y
+
+##### End of root section
+
+##### This section needs to be run as user
 
 myself=`logname`
-
+sudo -i -u $myself bash << EOF
 # Terminal set up
 echo '# Aliases' >> ~/.bash_aliases
 echo 'alias c="clear"' >> ~/.bash_aliases
@@ -41,17 +63,6 @@ gsettings set org.gnome.desktop.interface show-battery-percentage true
 gsettings set org.gnome.shell.extensions.desktop-icons show-home false
 gsettings set org.gnome.shell.extensions.desktop-icons show-trash false
 
-# Update system
-apt-get update -y
-
-# Install some packages
-apt-get install \
-  ubuntu-restricted-extras \
-  gnome-tweak-tool \
-  git \
-  gimp \
-  vlc -y
-
 # Configure git
 git config --global core.editor vim
 git config --global alias.lg "log --graph --pretty=format:'%Cred%h -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>'"
@@ -59,11 +70,13 @@ git config --global alias.lg "log --graph --pretty=format:'%Cred%h -%C(yellow)%d
 # Install vim
 mkdir ~/repos/
 git clone https://github.com/soonick/get-vim.git ~/repos/get-vim
-apt-get install build-essential libncurses-dev libncurses5-dev libgnome2-dev libgnomeui-dev libgtk2.0-dev libatk1.0-dev libbonoboui2-dev libcairo2-dev libx11-dev libxpm-dev libxt-dev curl default-jre -y
 ~/repos/get-vim/do.sh <<< "$HOME/bin/vim"
-chown -R $myself:$myself $HOME/bin/
 
 # Configure firefox
 ff_preferences="/usr/lib/firefox/browser/defaults/preferences/all-company.js"
 touch $ff_preferences
 echo "pref('signon.rememberSignons', false);" >> $ff_preferences
+
+EOF
+
+##### End of user section
