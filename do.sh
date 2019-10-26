@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Should be executed with sudo, otherwise it might stop to ask for password on
 # some steps
 
