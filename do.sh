@@ -79,6 +79,10 @@ gsettings set org.gnome.desktop.interface show-battery-percentage true
 gsettings set org.gnome.shell.extensions.desktop-icons show-home false
 gsettings set org.gnome.shell.extensions.desktop-icons show-trash false
 
+# Disable "natural" scrolling
+gsettings set org.gnome.desktop.peripherals.mouse natural-scroll false
+gsettings set org.gnome.desktop.peripherals.touchpad natural-scroll false
+
 # Configure git
 git config --global core.editor vim
 git config --global alias.lg "log --graph --pretty=format:'%Cred%h -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>'"
