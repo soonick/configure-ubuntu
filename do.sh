@@ -69,7 +69,7 @@ git config --global alias.lg "log --graph --pretty=format:'%Cred%h -%C(yellow)%d
 # Install vim
 mkdir ~/repos/
 git clone https://github.com/soonick/get-vim.git ~/repos/get-vim
-~/repos/get-vim/do.sh <<< "$HOME/bin/vim"
+~/repos/get-vim/do.sh <<< "~/bin/vim"
 
 # Configure firefox
 ff_preferences="/usr/lib/firefox/browser/defaults/preferences/all-company.js"
