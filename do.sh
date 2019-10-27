@@ -23,6 +23,11 @@ apt-get install \
 apt-get install build-essential libncurses-dev libncurses5-dev libgtk2.0-dev \
   libatk1.0-dev libcairo2-dev libx11-dev libxpm-dev libxt-dev curl default-jre -y
 
+# Configure firefox
+ff_preferences="/usr/lib/firefox/browser/defaults/preferences/all-company.js"
+touch $ff_preferences
+echo "pref('signon.rememberSignons', false);" >> $ff_preferences
+
 ##### End of root section
 
 ##### This section needs to be run as user
@@ -76,11 +81,6 @@ git config --global alias.lg "log --graph --pretty=format:'%Cred%h -%C(yellow)%d
 mkdir ~/repos/
 git clone https://github.com/soonick/get-vim.git ~/repos/get-vim
 ~/repos/get-vim/do.sh <<< "~/bin/vim"
-
-# Configure firefox
-ff_preferences="/usr/lib/firefox/browser/defaults/preferences/all-company.js"
-touch $ff_preferences
-echo "pref('signon.rememberSignons', false);" >> $ff_preferences
 
 EOF
 
