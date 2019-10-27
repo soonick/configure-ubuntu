@@ -79,7 +79,7 @@ git config --global alias.lg "log --graph --pretty=format:'%Cred%h -%C(yellow)%d
 
 # Install vim
 mkdir ~/repos/
-git clone https://github.com/soonick/get-vim.git ~/repos/get-vim
+git clone https://github.com/soonick/get-vim.git /home/$myself/repos/get-vim
 ~/repos/get-vim/do.sh <<< "~/bin/vim"
 
 EOF
