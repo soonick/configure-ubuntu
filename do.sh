@@ -33,6 +33,7 @@ echo "pref('signon.rememberSignons', false);" >> $ff_preferences
 ##### This section needs to be run as user
 
 myself=`logname`
+myid=`id -u $myself`
 sudo -i -u $myself bash << EOF
 # Stop if there is any error
 set -e
@@ -54,6 +55,11 @@ echo 'set -o vi' >> ~/.bash_aliases
 # Hide stuff I don't want in my home folder
 echo snap >> ~/.hidden
 echo Desktop >> ~/.hidden
+
+# This is necessary to set gsettings from within a script. Otherwise it doesn't
+# work
+export XDG_RUNTIME_DIR=/run/user/$myid
+export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$myid/bus
 
 # Gnome keyboard shortcuts
 gsettings set org.gnome.settings-daemon.plugins.media-keys terminal "['<Ctrl><Alt>t']"
