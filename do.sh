@@ -5,6 +5,9 @@
 
 ##### This section needs to be run as root
 
+# Stop if there is any error
+set -e
+
 # Update system
 apt-get update -y
 
@@ -26,6 +29,9 @@ apt-get install build-essential libncurses-dev libncurses5-dev libgtk2.0-dev \
 
 myself=`logname`
 sudo -i -u $myself bash << EOF
+# Stop if there is any error
+set -e
+
 # Terminal set up
 echo '# Aliases' >> ~/.bash_aliases
 echo 'alias c="clear"' >> ~/.bash_aliases
