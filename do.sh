@@ -92,6 +92,11 @@ gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profi
 gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$GNOME_TERMINAL_PROFILE/ background-color '#000000'
 gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$GNOME_TERMINAL_PROFILE/ foreground-color '#AFAFAF'
 
+# Create an ssh key pair for github
+ssh-keygen -t rsa -b 4096 -C "generated" -f ~/.ssh/github_rsa -N ""
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/github_rsa
+
 # Configure git
 git config --global core.editor vim
 git config --global alias.lg "log --graph --pretty=format:'%Cred%h -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>'"
