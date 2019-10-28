@@ -56,6 +56,15 @@ echo 'set -o vi' >> ~/.bash_aliases
 echo snap >> ~/.hidden
 echo Desktop >> ~/.hidden
 
+# Delete default directories
+rmdir ~/Documents
+rmdir ~/Downloads
+rmdir ~/Music
+rmdir ~/Pictures
+rmdir ~/Public
+rmdir ~/Templates
+rmdir ~/Videos
+
 # This is necessary to set gsettings from within a script. Otherwise it doesn't
 # work
 export XDG_RUNTIME_DIR=/run/user/$myid
