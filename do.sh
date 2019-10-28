@@ -34,6 +34,7 @@ echo "pref('signon.rememberSignons', false);" >> $ff_preferences
 
 myself=`logname`
 myid=`id -u $myself`
+email=$1
 sudo -i -u $myself bash << EOF
 # Stop if there is any error
 set -e
@@ -102,13 +103,15 @@ gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profi
 gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$GNOME_TERMINAL_PROFILE/ foreground-color '#AFAFAF'
 
 # Create an ssh key pair for github
-ssh-keygen -t rsa -b 4096 -C "generated" -f ~/.ssh/github_rsa -N ""
+ssh-keygen -t rsa -b 4096 -C "$email" -f ~/.ssh/github_rsa -N ""
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/github_rsa
 
 # Configure git
 git config --global core.editor vim
 git config --global alias.lg "log --graph --pretty=format:'%Cred%h -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>'"
+git config --global user.email "$email"
+git config --global user.name "Adrian Ancona Novelo"
 
 # Install vim
 mkdir ~/repos/
