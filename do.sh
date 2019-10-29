@@ -28,6 +28,9 @@ ff_preferences="/usr/lib/firefox/browser/defaults/preferences/all-company.js"
 touch $ff_preferences
 echo "pref('signon.rememberSignons', false);" >> $ff_preferences
 
+# Install lastpass extension for Firefox
+wget https://addons.mozilla.org/firefox/downloads/file/3429807/lastpass.xpi -O /usr/lib/firefox-addons/extensions/support@lastpass.com.xpi
+
 ##### End of root section
 
 ##### This section needs to be run as user
