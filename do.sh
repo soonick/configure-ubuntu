@@ -12,17 +12,28 @@ set -e
 apt-get update -y
 
 # Install some packages
-apt-get install \
+apt-get install -y \
   ubuntu-restricted-extras \
   gnome-tweak-tool \
   git \
   gimp \
-  install ruby ruby-dev -y \ # Necessary for Jekyll
-  vlc -y
+  vlc \
+  `# Jekyll dependencies` \
+  ruby ruby-dev \
+  `# Vim dependencies` \
+  build-essential libncurses-dev libncurses5-dev libgtk2.0-dev libatk1.0-dev \
+  libcairo2-dev libx11-dev libxpm-dev libxt-dev curl default-jre \
+  `# Docker dependencies` \
+  apt-transport-https ca-certificates gnupg-agent software-properties-common
 
-# Install vim dependencies
-apt-get install build-essential libncurses-dev libncurses5-dev libgtk2.0-dev \
-  libatk1.0-dev libcairo2-dev libx11-dev libxpm-dev libxt-dev curl default-jre -y
+# Install docker
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   disco \
+   stable"
+apt-get update -y
+apt-get install -y docker-ce docker-ce-cli containerd.io
 
 # Configure firefox
 ff_preferences="/usr/lib/firefox/browser/defaults/preferences/all-company.js"
