@@ -17,6 +17,7 @@ apt-get install \
   gnome-tweak-tool \
   git \
   gimp \
+  install ruby ruby-dev -y \ # Necessary for Jekyll
   vlc -y
 
 # Install vim dependencies
@@ -59,6 +60,11 @@ echo 'set -o vi' >> ~/.bash_aliases
 # Hide stuff I don't want in my home folder
 echo snap >> ~/.hidden
 echo Desktop >> ~/.hidden
+
+# Install jekyll for signed in user
+echo 'export GEM_HOME=$HOME/.gems' >> ~/.bashrc
+echo 'export PATH=$HOME/.gems/bin:$PATH' >> ~/.bashrc
+gem install jekyll bundler
 
 # Delete default directories
 rmdir ~/Documents
