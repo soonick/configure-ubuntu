@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# These script should be executed with sudo, otherwise it might stop to ask for
+# This script should be executed with sudo, otherwise it might stop to ask for
 # password on some steps
 
 ##### This section needs to be run as root
@@ -27,13 +27,17 @@ apt-get install -y \
   apt-transport-https ca-certificates gnupg-agent software-properties-common
 
 # Install docker
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
 add-apt-repository \
    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
    disco \
    stable"
 apt-get update -y
 apt-get install -y docker-ce docker-ce-cli containerd.io
+
+# Install docker-compose
+curl -L "https://github.com/docker/compose/releases/download/1.24.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
 
 # Configure firefox
 ff_preferences="/usr/lib/firefox/browser/defaults/preferences/all-company.js"
