@@ -8,6 +8,11 @@
 # Stop if there is any error
 set -e
 
+# Some variables
+myself=`logname`
+myid=`id -u $myself`
+email=$1
+
 # Update system
 apt-get update -y
 
@@ -34,6 +39,8 @@ add-apt-repository \
    stable"
 apt-get update -y
 apt-get install -y docker-ce docker-ce-cli containerd.io
+groupadd docker
+usermod -aG docker $USER
 
 # Install docker-compose
 curl -L "https://github.com/docker/compose/releases/download/1.24.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
@@ -51,9 +58,6 @@ wget https://addons.mozilla.org/firefox/downloads/file/3429807/lastpass.xpi -O /
 
 ##### This section needs to be run as user
 
-myself=`logname`
-myid=`id -u $myself`
-email=$1
 sudo -i -u $myself bash << EOF
 # Stop if there is any error
 set -e
