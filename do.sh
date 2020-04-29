@@ -11,6 +11,7 @@ set -e
 # Some variables
 myself=`logname`
 myid=`id -u $myself`
+myhome=`eval echo ~$myself`
 email=$1
 
 # Update system
@@ -146,9 +147,9 @@ git config --global user.email "$email"
 git config --global user.name "Adrian Ancona Novelo"
 
 # Install vim
-mkdir ~/repos/
-git clone https://github.com/soonick/get-vim.git /home/$myself/repos/get-vim
-~/repos/get-vim/do.sh <<< "~/bin/vim"
+mkdir -p ~/repos/
+git clone https://github.com/soonick/get-vim.git $myhome/repos/get-vim
+~/repos/get-vim/do.sh <<< "$myhome/bin/vim"
 
 EOF
 
