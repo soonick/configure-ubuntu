@@ -40,7 +40,7 @@ add-apt-repository \
    stable"
 apt-get update -y
 apt-get install -y docker-ce docker-ce-cli containerd.io
-groupadd docker
+groupadd -f docker
 usermod -aG docker $USER
 
 # Install docker-compose
