@@ -140,8 +140,6 @@ gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profi
 
 # Create an ssh key pair for github
 ssh-keygen -t rsa -b 4096 -C "$email" -f ~/.ssh/github_rsa -N ""
-eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/github_rsa
 
 # Configure git
 git config --global core.editor vim
@@ -157,3 +155,8 @@ git clone https://github.com/soonick/get-vim.git $myhome/repos/get-vim
 EOF
 
 ##### End of user section
+
+# Because of weird escaping rules in heredoc context, this has to be done
+# outside the user section
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/github_rsa
