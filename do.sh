@@ -96,6 +96,9 @@ rmdir ~/Public
 rmdir ~/Templates
 rmdir ~/Videos
 
+# Delete default directories from bookmarks
+truncate -s 0 ~/.config/gtk-3.0/bookmarks
+
 # This is necessary to set gsettings from within a script. Otherwise it doesn't
 # work
 export XDG_RUNTIME_DIR=/run/user/$myid
