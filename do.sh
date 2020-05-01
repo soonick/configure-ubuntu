@@ -24,6 +24,7 @@ apt-get install -y \
   git \
   gimp \
   vlc \
+  gnome-shell-extension-system-monitor \
   `# Jekyll dependencies` \
   ruby ruby-dev \
   `# Vim dependencies` \
