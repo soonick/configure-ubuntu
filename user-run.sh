@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
 
-# This script should be executed with sudo, otherwise it might stop to ask for
-# password on some steps
-
-##### This section needs to be run as root
+# This script expects and e-mail address as the first argument:
+# ./user-run.sh abc@def.ghi
 
 # Stop if there is any error
 set -e
@@ -11,58 +9,7 @@ set -e
 # Some variables
 myself=`logname`
 myid=`id -u $myself`
-myhome=`eval echo ~$myself`
 email=$1
-
-# Update system
-apt-get update -y
-
-# Install some packages
-apt-get install -y \
-  ubuntu-restricted-extras \
-  gnome-tweak-tool \
-  git \
-  gimp \
-  vlc \
-  gnome-shell-extension-system-monitor \
-  `# Jekyll dependencies` \
-  ruby ruby-dev \
-  `# Vim dependencies` \
-  build-essential libncurses-dev libncurses5-dev libgtk2.0-dev libatk1.0-dev \
-  libcairo2-dev libx11-dev libxpm-dev libxt-dev curl default-jre \
-  `# Docker dependencies` \
-  apt-transport-https ca-certificates gnupg-agent software-properties-common
-
-# Install docker
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
-add-apt-repository \
-   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-   eoan \
-   stable"
-apt-get update -y
-apt-get install -y docker-ce docker-ce-cli containerd.io
-groupadd -f docker
-usermod -aG docker $USER
-
-# Install docker-compose
-curl -L "https://github.com/docker/compose/releases/download/1.24.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-chmod +x /usr/local/bin/docker-compose
-
-# Configure firefox
-ff_preferences="/usr/lib/firefox/browser/defaults/preferences/all-company.js"
-touch $ff_preferences
-echo "pref('signon.rememberSignons', false);" >> $ff_preferences
-
-# Install lastpass extension for Firefox
-wget https://addons.mozilla.org/firefox/downloads/file/3429807/lastpass.xpi -O /usr/lib/firefox-addons/extensions/support@lastpass.com.xpi
-
-##### End of root section
-
-##### This section needs to be run as user
-
-sudo -i -u $myself bash << EOF
-# Stop if there is any error
-set -e
 
 # Terminal set up
 echo '# Aliases' >> ~/.bash_aliases
@@ -83,19 +30,20 @@ echo snap >> ~/.hidden
 echo Desktop >> ~/.hidden
 
 # Install jekyll for signed in user
-echo 'export GEM_HOME=\$HOME/.gems' >> ~/.bashrc
-echo 'export PATH=\$HOME/.gems/bin:\$PATH' >> ~/.bashrc
-. ~/.bashrc
+echo 'export GEM_HOME=$HOME/.gems' >> ~/.bashrc
+echo 'export PATH=$HOME/.gems/bin:$PATH' >> ~/.bashrc
+export GEM_HOME=$HOME/.gems
+export PATH=$HOME/.gems/bin:$PATH
 gem install jekyll bundler
 
 # Delete default directories
-rmdir ~/Documents
-rmdir ~/Downloads
-rmdir ~/Music
-rmdir ~/Pictures
-rmdir ~/Public
-rmdir ~/Templates
-rmdir ~/Videos
+rmdir ~/Documents || true
+rmdir ~/Downloads || true
+rmdir ~/Music || true
+rmdir ~/Pictures || true
+rmdir ~/Public || true
+rmdir ~/Templates || true
+rmdir ~/Videos || true
 
 # Delete default directories from bookmarks
 truncate -s 0 ~/.config/gtk-3.0/bookmarks
@@ -141,6 +89,8 @@ gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profi
 
 # Create an ssh key pair for github
 ssh-keygen -t rsa -b 4096 -C "$email" -f ~/.ssh/github_rsa -N ""
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/github_rsa
 
 # Configure git
 git config --global core.editor vim
@@ -150,14 +100,5 @@ git config --global user.name "Adrian Ancona Novelo"
 
 # Install vim
 mkdir -p ~/repos/
-git clone https://github.com/soonick/get-vim.git $myhome/repos/get-vim
-~/repos/get-vim/do.sh <<< "$myhome/bin/vim"
-
-EOF
-
-##### End of user section
-
-# Because of weird escaping rules in heredoc context, this has to be done
-# outside the user section
-eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/github_rsa
+git clone https://github.com/soonick/get-vim.git $HOME/repos/get-vim
+~/repos/get-vim/do.sh <<< "$HOME/bin/vim"
