@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# This script expects and e-mail address as the first argument:
+# This script expects an e-mail address as the first argument:
 # ./user-run.sh abc@def.ghi
 
 # Stop if there is any error
@@ -11,7 +11,7 @@ myself=`logname`
 myid=`id -u $myself`
 email=$1
 
-# Terminal set up
+# Set up aliases and other shell configurations
 echo '# Aliases' >> ~/.bash_aliases
 echo 'alias c="clear"' >> ~/.bash_aliases
 echo 'alias gs="git status"' >> ~/.bash_aliases
@@ -46,7 +46,7 @@ rmdir ~/Templates || true
 rmdir ~/Videos || true
 
 # Delete default directories from bookmarks
-truncate -s 0 ~/.config/gtk-3.0/bookmarks
+truncate -s 0 ~/.config/user-dirs.dirs
 
 # This is necessary to set gsettings from within a script. Otherwise it doesn't
 # work
@@ -67,9 +67,9 @@ gsettings set org.gnome.shell.extensions.dash-to-dock intellihide false
 # Show battery percentage
 gsettings set org.gnome.desktop.interface show-battery-percentage true
 
-# Don't show icons on desktop
-gsettings set org.gnome.shell.extensions.desktop-icons show-home false
-gsettings set org.gnome.shell.extensions.desktop-icons show-trash false
+# Don't show trash and home folders on desktop
+gsettings set org.gnome.shell.extensions.ding show-trash false
+gsettings set org.gnome.shell.extensions.ding show-home false
 
 # Disable "natural" scrolling
 gsettings set org.gnome.desktop.peripherals.mouse natural-scroll false

@@ -11,11 +11,11 @@ apt-get update -y
 # Install some packages
 apt-get install -y \
   ubuntu-restricted-extras \
-  gnome-tweak-tool \
+  gnome-tweaks \
   git \
   gimp \
   vlc \
-  gnome-shell-extension-system-monitor \
+  gir1.2-gtop-2.0 gir1.2-nm-1.0 gir1.2-clutter-1.0 gnome-system-monitor \
   `# Jekyll dependencies` \
   ruby ruby-dev \
   `# Vim dependencies` \
@@ -24,27 +24,10 @@ apt-get install -y \
   `# Docker dependencies` \
   apt-transport-https ca-certificates gnupg-agent software-properties-common
 
-# Install docker
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
-add-apt-repository \
-   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-   eoan \
-   stable"
-apt-get update -y
-apt-get install -y docker-ce docker-ce-cli containerd.io
-groupadd -f docker
-usermod -aG docker $USER
-
-# Install docker-compose
-curl -L "https://github.com/docker/compose/releases/download/1.24.1/docker-compose-$(uname -s)-$(uname -m)" \
-    -o /usr/local/bin/docker-compose
-chmod +x /usr/local/bin/docker-compose
-
-# Configure firefox
-ff_preferences="/usr/lib/firefox/browser/defaults/preferences/all-company.js"
-touch $ff_preferences
-echo "pref('signon.rememberSignons', false);" >> $ff_preferences
-
-# Install lastpass extension for Firefox
-wget https://addons.mozilla.org/firefox/downloads/file/3429807/lastpass.xpi \
-    -O /usr/lib/firefox-addons/extensions/support@lastpass.com.xpi
+# Install docker and docker compose
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update -y
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
