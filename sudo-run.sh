@@ -38,8 +38,14 @@ echo \
 sudo apt-get update -y
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
 
-# Install Chrome
 myself=`logname`
+
+# Install kubectl
+curl -L -o /home/$myself/bin/kubectl \
+  "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+install -o root -g root -m 0755 /home/$myself/bin/kubectl /usr/local/bin/kubectl
+
+# Install Chrome
 wget -O /home/$myself/bin/chrome.deb \
   https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo apt install /home/$myself/bin/chrome.deb
