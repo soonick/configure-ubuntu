@@ -18,6 +18,7 @@ apt-get install -y \
   vlc \
   gnupg \
   tree \
+  bazel-bootstrap \
   `# tmux and dependencies` \
   tmux xclip \
   `# Jekyll dependencies` \
