@@ -17,6 +17,7 @@ apt-get install -y \
   gimp \
   vlc \
   gnupg \
+  tree \
   `# tmux and dependencies` \
   tmux xclip \
   `# Jekyll dependencies` \
