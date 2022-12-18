@@ -21,6 +21,8 @@ echo 'alias gd="git diff"' >> ~/.bash_aliases
 echo 'alias gc="git commit"' >> ~/.bash_aliases
 echo 'alias gl="git lg"' >> ~/.bash_aliases
 echo 'alias gpom="git push origin master"' >> ~/.bash_aliases
+echo 'alias kb="kubectl"' >> ~/.bash_aliases
+echo 'alias kgp="kubectl get pods"' >> ~/.bash_aliases
 echo '' >> ~/.bash_aliases
 echo '# Configurations' >> ~/.bash_aliases
 echo 'set -o vi' >> ~/.bash_aliases
