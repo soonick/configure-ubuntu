@@ -16,13 +16,16 @@ apt-get install -y \
   git \
   gimp \
   vlc \
+  gnupg \
   `# Jekyll dependencies` \
   ruby ruby-dev \
   `# Vim dependencies` \
   build-essential libncurses-dev libncurses5-dev libgtk2.0-dev libatk1.0-dev \
   libcairo2-dev libx11-dev libxpm-dev libxt-dev curl default-jre \
   `# Docker dependencies` \
-  apt-transport-https ca-certificates gnupg-agent software-properties-common
+  apt-transport-https ca-certificates gnupg-agent software-properties-common \
+  `# Dependencies for gnome-shell-system-monitor-applet` \
+  gir1.2-gtop-2.0 gir1.2-nm-1.0 gir1.2-clutter-1.0 gnome-system-monitor
 
 # Install docker and docker compose
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg

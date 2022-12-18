@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-# This script expects an e-mail address as the first argument:
-# ./user-run.sh abc@def.ghi
+# This script expects an e-mail address as the first argument and a name as second argument
+# ./user-run.sh abc@def.ghi "Carlos Sanchez"
 
 # Stop if there is any error
 set -e
@@ -10,6 +10,7 @@ set -e
 myself=`logname`
 myid=`id -u $myself`
 email=$1
+name=$2
 
 # Set up aliases and other shell configurations
 echo '# Aliases' >> ~/.bash_aliases
@@ -102,3 +103,36 @@ git config --global user.name "Adrian Ancona Novelo"
 mkdir -p ~/repos/
 git clone https://github.com/soonick/get-vim.git $HOME/repos/get-vim
 ~/repos/get-vim/do.sh <<< "$HOME/bin/vim"
+
+# Generate GPG key
+cat >foo <<EOF
+%echo Generating GPG key
+Key-Type: RSA
+Key-Length: 3072
+Subkey-Type: RSA
+Subkey-Length: 3072
+Name-Real: $name
+Name-Email: $email
+%no-protection
+%commit
+%echo done
+EOF
+key=$(gpg --batch --gen-key foo 2>&1 | grep "revocation certificate stored as")
+# Remove everything before last /
+key=$(echo $key | sed -e 's/^.*\///g')
+# Remove everything after the .
+key=$(echo $key | cut -d "." -f 1)
+gpg --armor --export $key > ~/.ssh/gpg.pub
+echo "Public key copied to ~/.ssh/gpg.pub"
+git config commit.gpgsign true
+git config user.signingkey $key
+
+# Things that couldn't be automated
+echo ""
+echo ""
+echo "Script ran successfully. Some steps couldn't be automated:"
+echo "- Install System monitor Gnome shell extension: https://extensions.gnome.org/extension/3010/system-monitor-next/"
+echo "- Install Bitwarden Chrome extension"
+echo "- Install Ublock Origin Chrome extension"
+echo "- Add SSH key to github (~/.ssh/github_rsa.pub)"
+echo "- Add GPG key to github (~/.ssh/gpg.pub)"
