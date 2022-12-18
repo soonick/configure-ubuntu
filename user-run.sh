@@ -127,6 +127,30 @@ echo "Public key copied to ~/.ssh/gpg.pub"
 git config commit.gpgsign true
 git config user.signingkey $key
 
+# Tmux configuration
+cat >~/.tmux.conf <<EOF
+# Change prefix key from Ctrl+b to Ctrl+a
+set -g prefix C-a
+
+# "Prefix" "r" reloads configuration file
+bind r source-file ~/.tmux.conf \; display-message "Tmux configuration reloaded"
+
+# Make it possible to scroll window context with the mouse
+set -g mouse on
+
+# Use 256 colors
+set -g default-terminal "xterm-256color"
+
+# Enable vim navigation in copy mode
+setw -g mode-keys vi
+
+# Use v to trigger selection
+bind-key -T copy-mode-vi v send-keys -X begin-selection
+
+# Use y to yank current selection and put it in the OS' clipboard
+bind-key -T copy-mode-vi y send -X copy-pipe-and-cancel "xclip -sel clip -i"
+EOF
+
 # Things that couldn't be automated
 echo ""
 echo ""
