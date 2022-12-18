@@ -21,11 +21,21 @@ echo 'alias gd="git diff"' >> ~/.bash_aliases
 echo 'alias gc="git commit"' >> ~/.bash_aliases
 echo 'alias gl="git lg"' >> ~/.bash_aliases
 echo 'alias gpom="git push origin master"' >> ~/.bash_aliases
+echo 'alias gpr="git pull --rebase"' >> ~/.bash_aliases
 echo 'alias kb="kubectl"' >> ~/.bash_aliases
 echo 'alias kgp="kubectl get pods"' >> ~/.bash_aliases
 echo '' >> ~/.bash_aliases
 echo '# Configurations' >> ~/.bash_aliases
 echo 'set -o vi' >> ~/.bash_aliases
+echo '' >> ~/.bash_aliases
+echo '# Functions' >> ~/.bash_aliases
+echo '' >> ~/.bash_aliases
+echo '# Creates a new branch that tracks origin/master' >> ~/.bash_aliases
+echo 'function gcb {' >> ~/.bash_aliases
+echo '  local branch_name="$1"' >> ~/.bash_aliases
+echo '  git checkout -b "$branch_name"' >> ~/.bash_aliases
+echo '  git branch --set-upstream-to origin/master' >> ~/.bash_aliases
+echo '}' >> ~/.bash_aliases
 . ~/.bash_aliases
 
 # Hide stuff I don't want in my home folder
