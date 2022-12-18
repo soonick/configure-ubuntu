@@ -126,8 +126,8 @@ key=$(echo $key | sed -e 's/^.*\///g')
 key=$(echo $key | cut -d "." -f 1)
 gpg --armor --export $key > ~/.ssh/gpg.pub
 echo "Public key copied to ~/.ssh/gpg.pub"
-git config commit.gpgsign true
-git config user.signingkey $key
+git config --global commit.gpgsign true
+git config --global user.signingkey $key
 
 # Tmux configuration
 cat >~/.tmux.conf <<EOF
