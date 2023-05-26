@@ -163,6 +163,9 @@ bind-key -T copy-mode-vi v send-keys -X begin-selection
 
 # Use y to yank current selection and put it in the OS' clipboard
 bind-key -T copy-mode-vi y send -X copy-pipe-and-cancel "xclip -sel clip -i"
+
+# Increase scroll buffer
+set -g history-limit 20000
 EOF
 
 # Things that couldn't be automated
