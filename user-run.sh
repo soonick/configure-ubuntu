@@ -94,7 +94,7 @@ else
 fi
 
 # Configure git
-git config --global core.editor vim
+git config --global core.editor nvim
 git config --global alias.lg "log --graph --all --pretty=format:'%Cred%h -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>'"
 git config --global user.email "$email"
 git config --global user.name "$name"
