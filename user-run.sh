@@ -157,11 +157,4 @@ fi
 
 # Things that couldn't be automated
 echo ""
-echo ""
-echo "Script ran successfully. Some steps couldn't be automated:"
-echo "- Install System monitor Gnome shell extension: https://extensions.gnome.org/extension/3010/system-monitor-next/"
-echo "- Install Bitwarden Chrome extension"
-echo "- Install Ublock Origin Chrome extension"
-echo "- Add SSH key to github (~/.ssh/github_rsa.pub)"
-echo "- Add GPG key to github (~/.ssh/gpg.pub)"
-echo "- Docker post install steps: https://docs.docker.com/engine/install/linux-postinstall/"
+cat ./manual-steps
