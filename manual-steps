@@ -8,5 +8,4 @@ Script ran successfully. Some steps couldn't be automated:"
 - Docker post install steps: https://docs.docker.com/engine/install/linux-postinstall/"
 - Install nerd fonts and configure terminal to use them: https://www.nerdfonts.com/font-downloads
 - Configure google chrome to always ask where to download files to
-- Configure chrome to never save password
-- Install ripgrep (necessary for telescope)
+- Configure chrome to never save passwords
