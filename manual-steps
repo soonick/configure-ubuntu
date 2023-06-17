@@ -9,3 +9,4 @@ Script ran successfully. Some steps couldn't be automated:"
 - Install nerd fonts and configure terminal to use them: https://www.nerdfonts.com/font-downloads
 - Configure google chrome to always ask where to download files to
 - Configure chrome to never save passwords
+- Set compose key to right alt
