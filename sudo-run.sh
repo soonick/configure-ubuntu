@@ -59,16 +59,5 @@ else
   install -o root -g root -m 0755 /home/$myself/bin/kubectl /usr/local/bin/kubectl
 fi
 
-# Install Chrome
-if command -v google-chrome &> /dev/null
-then
-  echo "Chrome is already installed"
-else
-  echo "Installing chrome"
-  wget -O /home/$myself/bin/chrome.deb \
-    https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-  sudo apt install /home/$myself/bin/chrome.deb
-fi
-
 chown -R $myself /home/$myself/bin
 chgrp -R $myself /home/$myself/bin
