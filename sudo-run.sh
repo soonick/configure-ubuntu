@@ -11,7 +11,6 @@ apt-get update -y
 # Install some packages
 apt-get install -y \
   ubuntu-restricted-extras \
-  chrome-gnome-shell \
   gnome-tweaks \
   git \
   gimp \
