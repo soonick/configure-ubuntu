@@ -6,6 +6,4 @@ Script ran successfully. Some steps couldn't be automated:"
 - Add GPG key to github (~/.ssh/gpg.pub)"
 - Docker post install steps: https://docs.docker.com/engine/install/linux-postinstall/"
 - Install nerd fonts and configure terminal to use them: https://www.nerdfonts.com/font-downloads
-- Configure firefox to always ask where to download files to
-- Configure firefox to never save passwords
 - Set compose key to right alt

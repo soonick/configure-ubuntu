@@ -158,3 +158,7 @@ fi
 # Things that couldn't be automated
 echo ""
 cat ./manual-steps
+
+# Firefox settings
+profilePath=`find ~/snap/firefox/common/.mozilla/firefox  -maxdepth 1 -type d | grep default`
+cp ./user.js ${profilePath}/user.js
