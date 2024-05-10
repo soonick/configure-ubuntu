@@ -126,6 +126,7 @@ fi
 
 # Install gnome-shell-system-monitor-applet
 git clone https://github.com/mgalgs/gnome-shell-system-monitor-applet.git $HOME/bin/gnome-shell-system-monitor-applet
+mkdir -p $HOME/.local/share/gnome-shell/extensions/
 ln -sv $HOME/bin/gnome-shell-system-monitor-applet/system-monitor-next@paradoxxx.zero.gmail.com/ $HOME/.local/share/gnome-shell/extensions/
 
 # Generate GPG key
