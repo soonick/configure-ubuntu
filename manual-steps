@@ -1,5 +1,5 @@
 Script ran successfully. Some steps couldn't be automated:"
-- Install System monitor Gnome shell extension: https://extensions.gnome.org/extension/3010/system-monitor-next/"
+- Restart system and run this command to enable system monitor extension: "gnome-extensions enable system-monitor-next@paradoxxx.zero.gmail.com"
 - Install Bitwarden extension"
 - Install Ublock Origin extension"
 - Add SSH key to github (~/.ssh/github_rsa.pub)"
