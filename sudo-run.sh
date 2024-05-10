@@ -10,14 +10,15 @@ apt-get update -y
 
 # Install some packages
 apt-get install -y \
-  ubuntu-restricted-extras \
-  gnome-tweaks \
-  git \
+  bazel-bootstrap \
   gimp \
-  vlc \
+  git \
+  gnome-tweaks \
+  gnucash \
   gnupg \
   tree \
-  bazel-bootstrap \
+  ubuntu-restricted-extras \
+  vlc \
   `# tmux and dependencies` \
   tmux xclip \
   `# Jekyll dependencies` \
