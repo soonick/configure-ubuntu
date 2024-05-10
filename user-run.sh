@@ -124,6 +124,10 @@ else
   cd $current_folder
 fi
 
+# Install gnome-shell-system-monitor-applet
+git clone https://github.com/mgalgs/gnome-shell-system-monitor-applet.git $HOME/bin/gnome-shell-system-monitor-applet
+ln -sv $HOME/bin/gnome-shell-system-monitor-applet/system-monitor-next@paradoxxx.zero.gmail.com/ $HOME/.local/share/gnome-shell/extensions/
+
 # Generate GPG key
 if test -f ~/.ssh/gpg.pub
 then
