@@ -77,6 +77,9 @@ gsettings set org.gnome.mutter workspaces-only-on-primary false
 # Use dark theme
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 
+# Remove Characters search from desktop search providers
+gsettings set org.gnome.desktop.search-providers disabled "['org.gnome.Characters.desktop']"
+
 # Configure terminal
 GNOME_TERMINAL_PROFILE=`gsettings get org.gnome.Terminal.ProfilesList default | awk -F \' '{print $2}'`
 gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$GNOME_TERMINAL_PROFILE/ font 'Monospace 10'
