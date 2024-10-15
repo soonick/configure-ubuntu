@@ -128,6 +128,18 @@ fi
 git clone https://github.com/mgalgs/gnome-shell-system-monitor-applet.git $HOME/bin/gnome-shell-system-monitor-applet
 mkdir -p $HOME/.local/share/gnome-shell/extensions/
 ln -sv $HOME/bin/gnome-shell-system-monitor-applet/system-monitor-next@paradoxxx.zero.gmail.com/ $HOME/.local/share/gnome-shell/extensions/
+SCHEMA_DIR=$HOME/.local/share/gnome-shell/extensions/system-monitor-next@paradoxxx.zero.gmail.com/schemas
+gsettings --schemadir $SCHEMA_DIR set org.gnome.shell.extensions.system-monitor icon-display false
+gsettings --schemadir $SCHEMA_DIR set org.gnome.shell.extensions.system-monitor memory-graph-width 50
+gsettings --schemadir $SCHEMA_DIR set org.gnome.shell.extensions.system-monitor memory-show-text false
+gsettings --schemadir $SCHEMA_DIR set org.gnome.shell.extensions.system-monitor cpu-graph-width 50
+gsettings --schemadir $SCHEMA_DIR set org.gnome.shell.extensions.system-monitor cpu-show-text false
+gsettings --schemadir $SCHEMA_DIR set org.gnome.shell.extensions.system-monitor net-graph-width 50
+gsettings --schemadir $SCHEMA_DIR set org.gnome.shell.extensions.system-monitor net-show-text false
+gsettings --schemadir $SCHEMA_DIR set org.gnome.shell.extensions.system-monitor thermal-display true
+gsettings --schemadir $SCHEMA_DIR set org.gnome.shell.extensions.system-monitor thermal-graph-width 50
+gsettings --schemadir $SCHEMA_DIR set org.gnome.shell.extensions.system-monitor thermal-show-text false
+gsettings --schemadir $SCHEMA_DIR set org.gnome.shell.extensions.system-monitor thermal-sensor-label 'k10temp - Tctl'
 
 # Generate GPG key
 if test -f ~/.ssh/gpg.pub
