@@ -10,7 +10,6 @@ apt-get update -y
 
 # Install some packages
 apt-get install -y \
-  bazel-bootstrap \
   gimp \
   git \
   gnome-tweaks \
