@@ -29,18 +29,14 @@ if ! cat ~/.hidden | grep Desktop &> /dev/null
 then
   echo Desktop >> ~/.hidden
 fi
-
-# Delete default directories
-rmdir ~/Documents &> /dev/null || true
-rmdir ~/Downloads &> /dev/null || true
-rmdir ~/Music &> /dev/null || true
-rmdir ~/Pictures &> /dev/null || true
-rmdir ~/Public &> /dev/null || true
-rmdir ~/Templates &> /dev/null || true
-rmdir ~/Videos &> /dev/null || true
-
-# Delete default directories from bookmarks
-truncate -s 0 ~/.config/user-dirs.dirs
+if ! cat ~/.hidden | grep go &> /dev/null
+then
+  echo go >> ~/.hidden
+fi
+if ! cat ~/.hidden | grep Downloads &> /dev/null
+then
+  echo Downloads >> ~/.hidden
+fi
 
 # This is necessary to set gsettings from within a script. Otherwise it doesn't work
 export XDG_RUNTIME_DIR=/run/user/$myid
@@ -219,3 +215,15 @@ Exec=$HOME/.dropbox-dist/dropboxd
 X-GNOME-Autostart-enabled=true
 EOF
 chmod +x $HOME/.config/autostart/dropbox.desktop
+
+# Delete default directories
+rmdir ~/Documents &> /dev/null || true
+rmdir ~/Downloads &> /dev/null || true
+rmdir ~/Music &> /dev/null || true
+rmdir ~/Pictures &> /dev/null || true
+rmdir ~/Public &> /dev/null || true
+rmdir ~/Templates &> /dev/null || true
+rmdir ~/Videos &> /dev/null || true
+
+# Delete default directories from bookmarks
+truncate -s 0 ~/.config/user-dirs.dirs
