@@ -200,3 +200,15 @@ extension=$(curl -L https://github.com/gorhill/uBlock/releases/latest | grep -Po
 wget -O $HOME/bin/firefox-extensions/ublock.xpi $extension
 extension=$(curl -L https://addons.mozilla.org/en-US/firefox/addon/bitwarden-password-manager/ | grep -Po "https://addons.mozilla.org/firefox/downloads.*?xpi")
 wget -O $HOME/bin/firefox-extensions/bitwarden.xpi $extension
+
+# Dropbox
+cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
+mkdir -p $HOME/.config/autostart
+cat >$HOME/.config/autostart/dropbox.desktop <<EOF
+[Desktop Entry]
+Type=Application
+Name=Dropbox
+Exec=$HOME/.dropbox-dist/dropboxd
+X-GNOME-Autostart-enabled=true
+EOF
+chmod +x $HOME/.config/autostart/dropbox.desktop
