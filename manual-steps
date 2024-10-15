@@ -4,4 +4,3 @@ Script ran successfully. Some steps couldn't be automated:
 - Install extensions from ~/bin/firefox-extensions
 - Add SSH key to github (~/.ssh/github_rsa.pub)
 - Add GPG key to github (~/.ssh/gpg.pub)
-- Install nerd fonts and configure terminal to use them: https://www.nerdfonts.com/font-downloads

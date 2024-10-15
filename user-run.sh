@@ -46,6 +46,13 @@ truncate -s 0 ~/.config/user-dirs.dirs
 export XDG_RUNTIME_DIR=/run/user/$myid
 export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$myid/bus
 
+# Terminal fonts
+mkdir -p $HOME/bin/fonts
+wget -O $HOME/bin/fonts/NerdFont.zip https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/UbuntuMono.zip
+mkdir -p $HOME/.fonts
+unzip $HOME/bin/fonts/NerdFont.zip -d $HOME/.fonts
+fc-cache -f -v
+
 # Gnome keyboard shortcuts
 gsettings set org.gnome.settings-daemon.plugins.media-keys terminal "['<Ctrl><Alt>t']"
 gsettings set org.gnome.settings-daemon.plugins.media-keys home "['<Ctrl><Alt>h']"
@@ -82,7 +89,7 @@ gsettings set org.gnome.desktop.search-providers disabled "['org.gnome.Character
 
 # Configure terminal
 GNOME_TERMINAL_PROFILE=`gsettings get org.gnome.Terminal.ProfilesList default | awk -F \' '{print $2}'`
-gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$GNOME_TERMINAL_PROFILE/ font 'Monospace 10'
+gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$GNOME_TERMINAL_PROFILE/ font 'UbuntuMono Nerd Font 12'
 gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$GNOME_TERMINAL_PROFILE/ use-system-font false
 gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$GNOME_TERMINAL_PROFILE/ audible-bell false
 gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$GNOME_TERMINAL_PROFILE/ use-theme-colors false
@@ -184,7 +191,7 @@ echo ""
 cat ./manual-steps
 
 # Firefox settings
-profilePath=`find ~/snap/firefox/common/.mozilla/firefox  -maxdepth 1 -type d | grep default`
+profilePath=`find ~/snap/firefox/common/.mozilla/firefox -maxdepth 1 -type d | grep default`
 cp ./user.js ${profilePath}/user.js
 
 # Download firefox extensions
