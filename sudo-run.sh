@@ -30,6 +30,8 @@ apt-get install -y \
   `# Dependencies for gnome-shell-system-monitor-applet` \
   gir1.2-gtop-2.0 gir1.2-nm-1.0 gir1.2-clutter-1.0 gnome-system-monitor
 
+myself=`logname`
+
 # Install docker and docker compose
 if command -v docker &> /dev/null
 then
@@ -44,7 +46,11 @@ else
   sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose
 fi
 
-myself=`logname`
+# Docker post-install steps
+groupadd -f docker
+usermod -aG docker $myself
+newgrp docker
+
 mkdir -p /home/$myself/bin/
 
 # Install kubectl
