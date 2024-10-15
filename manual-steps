@@ -1,8 +1,7 @@
 Script ran successfully. Some steps couldn't be automated:
 
 - Restart system and run this command to enable system monitor extension: "gnome-extensions enable system-monitor-next@paradoxxx.zero.gmail.com"
-- Install Bitwarden extension
-- Install Ublock Origin extension
+- Install extensions from ~/bin/firefox-extensions
 - Add SSH key to github (~/.ssh/github_rsa.pub)
 - Add GPG key to github (~/.ssh/gpg.pub)
 - Install nerd fonts and configure terminal to use them: https://www.nerdfonts.com/font-downloads

@@ -186,3 +186,10 @@ cat ./manual-steps
 # Firefox settings
 profilePath=`find ~/snap/firefox/common/.mozilla/firefox  -maxdepth 1 -type d | grep default`
 cp ./user.js ${profilePath}/user.js
+
+# Download firefox extensions
+mkdir -p $HOME/bin/firefox-extensions
+extension=$(curl -L https://github.com/gorhill/uBlock/releases/latest | grep -Po "https://addons.mozilla.org/firefox/downloads.*?xpi")
+wget -O $HOME/bin/firefox-extensions/ublock.xpi $extension
+extension=$(curl -L https://addons.mozilla.org/en-US/firefox/addon/bitwarden-password-manager/ | grep -Po "https://addons.mozilla.org/firefox/downloads.*?xpi")
+wget -O $HOME/bin/firefox-extensions/bitwarden.xpi $extension
