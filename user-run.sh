@@ -87,6 +87,13 @@ gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 # Remove Characters search from desktop search providers
 gsettings set org.gnome.desktop.search-providers disabled "['org.gnome.Characters.desktop']"
 
+# Use flameshot for Prt Sc
+gsettings set org.gnome.shell.keybindings show-screenshot-ui '[]'
+gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name 'flameshot'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'script --command "flameshot gui" /dev/null'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding 'Print'
+
 # Configure terminal
 GNOME_TERMINAL_PROFILE=`gsettings get org.gnome.Terminal.ProfilesList default | awk -F \' '{print $2}'`
 gsettings set org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$GNOME_TERMINAL_PROFILE/ font 'UbuntuMono Nerd Font 12'
