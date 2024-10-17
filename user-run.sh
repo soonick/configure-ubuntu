@@ -231,3 +231,6 @@ truncate -s 0 ~/.config/user-dirs.dirs
 # Disable Ubuntu's stupid tiling behaviour
 gnome-extensions disable tiling-assistant@ubuntu.com
 gsettings set org.gnome.desktop.wm.keybindings maximize "['<Super>Up']"
+
+# Allow audio over aplification
+gsettings set org.gnome.desktop.sound allow-volume-above-100-percent 'true'
