@@ -203,6 +203,8 @@ extension=$(curl -L https://github.com/gorhill/uBlock/releases/latest | grep -Po
 wget -O $HOME/bin/firefox-extensions/ublock.xpi $extension
 extension=$(curl -L https://addons.mozilla.org/en-US/firefox/addon/bitwarden-password-manager/ | grep -Po "https://addons.mozilla.org/firefox/downloads.*?xpi")
 wget -O $HOME/bin/firefox-extensions/bitwarden.xpi $extension
+extension=$(curl -L https://addons.mozilla.org/en-US/firefox/addon/languagetool/ | grep -Po "https://addons.mozilla.org/firefox/downloads.*?xpi")
+wget -O $HOME/bin/firefox-extensions/languagetool.xpi $extension
 
 # Dropbox
 cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
