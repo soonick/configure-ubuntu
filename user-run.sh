@@ -203,7 +203,7 @@ extension=$(curl -L https://addons.mozilla.org/en-US/firefox/addon/languagetool/
 wget -O $HOME/bin/firefox-extensions/languagetool.xpi $extension
 
 # Dropbox
-cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
+cd ~ && wget -4 -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
 mkdir -p $HOME/.config/autostart
 cat >$HOME/.config/autostart/dropbox.desktop <<EOF
 [Desktop Entry]
