@@ -10,7 +10,7 @@ apt-get update -y
 
 # Install some packages
 apt-get install -y \
-  flameshot
+  flameshot \
   gimp \
   git \
   gnome-tweaks \
