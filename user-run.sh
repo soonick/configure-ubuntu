@@ -189,10 +189,6 @@ else
   cp ./tmux.conf ~/.tmux.conf
 fi
 
-# Things that couldn't be automated
-echo ""
-cat ./manual-steps
-
 # Firefox settings
 profilePath=`find ~/snap/firefox/common/.mozilla/firefox -maxdepth 1 -type d | grep default`
 cp ./user.js ${profilePath}/user.js
@@ -236,3 +232,7 @@ gsettings set org.gnome.desktop.wm.keybindings maximize "['<Super>Up']"
 
 # Allow audio over aplification
 gsettings set org.gnome.desktop.sound allow-volume-above-100-percent 'true'
+
+# Things that couldn't be automated
+echo ""
+cat ./manual-steps
