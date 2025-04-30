@@ -16,6 +16,7 @@ apt-get install -y \
   gnome-tweaks \
   gnucash \
   gnupg \
+  kicad \
   tree \
   ubuntu-restricted-extras \
   vlc \
