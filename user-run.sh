@@ -230,5 +230,6 @@ gsettings set org.gnome.desktop.wm.keybindings maximize "['<Super>Up']"
 gsettings set org.gnome.desktop.sound allow-volume-above-100-percent 'true'
 
 # Things that couldn't be automated
+cd $current_folder
 echo ""
 cat ./manual-steps
