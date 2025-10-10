@@ -199,6 +199,8 @@ extension=$(curl -L https://addons.mozilla.org/en-US/firefox/addon/bitwarden-pas
 wget -O $HOME/bin/firefox-extensions/bitwarden.xpi $extension
 extension=$(curl -L https://addons.mozilla.org/en-US/firefox/addon/languagetool/ | grep -Po "https://addons.mozilla.org/firefox/downloads.*?xpi")
 wget -O $HOME/bin/firefox-extensions/languagetool.xpi $extension
+extension=$(curl -L https://addons.mozilla.org/en-US/firefox/addon/video-downloadhelper/ | grep -Po "https://addons.mozilla.org/firefox/downloads.*?xpi")
+wget -O $HOME/bin/firefox-extensions/video-downloadhelper.xpi $extension
 
 # Dropbox
 cd ~ && wget -4 -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
