@@ -94,6 +94,8 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/or
 gsettings set org.gnome.Ptyxis font-name 'UbuntuMono Nerd Font 12'
 gsettings set org.gnome.Ptyxis use-system-font false
 gsettings set org.gnome.Ptyxis audible-bell false
+PROFILE_UUID=$(dconf read /org/gnome/Ptyxis/default-profile-uuid | tr -d "'")
+dconf write /org/gnome/Ptyxis/Profiles/$PROFILE_UUID/palette "'campbell'"
 
 # Create an ssh key pair for github
 if test -f ~/.ssh/github_rsa
