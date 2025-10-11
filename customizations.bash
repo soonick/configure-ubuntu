@@ -50,15 +50,17 @@ frif() {
 
 ## Rebase curent branch to master and delete it
 grdb() {
-  set -e
-  local initial_branch=$(git branch --show-current)
+  (
+    set -e
+    local initial_branch=$(git branch --show-current)
 
-  git pull origin master
-  git rebase origin/master
+    git pull origin master
+    git rebase origin/master
 
-  git checkout master
-  git rebase origin/master
+    git checkout master
+    git rebase origin/master
 
-  git branch -d "$initial_branch"
-  git fetch origin --prune
+    git branch -d "$initial_branch"
+    git fetch origin --prune
+  )
 }
