@@ -113,6 +113,7 @@ git config --global core.editor nvim
 git config --global alias.lg "log --graph --all --pretty=format:'%Cred%h -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>'"
 git config --global user.email "$email"
 git config --global user.name "$name"
+git config --global pull.rebase true
 
 # Install vim
 if command -v nvim &> /dev/null
