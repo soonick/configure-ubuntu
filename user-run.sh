@@ -134,9 +134,9 @@ else
 fi
 
 # Install gnome-shell-system-monitor-applet
-git clone https://github.com/mgalgs/gnome-shell-system-monitor-applet.git $HOME/bin/gnome-shell-system-monitor-applet
-mkdir -p $HOME/.local/share/gnome-shell/extensions/
-ln -sv $HOME/bin/gnome-shell-system-monitor-applet/system-monitor-next@paradoxxx.zero.gmail.com/ $HOME/.local/share/gnome-shell/extensions/
+git clone https://github.com/mgalgs/gnome-shell-system-monitor-next-applet.git $HOME/bin/gnome-shell-system-monitor-next-applet
+cd $HOME/bin/gnome-shell-system-monitor-next-applet
+make install gschemas.install-and-compile
 SCHEMA_DIR=$HOME/.local/share/gnome-shell/extensions/system-monitor-next@paradoxxx.zero.gmail.com/schemas
 gsettings --schemadir $SCHEMA_DIR set org.gnome.shell.extensions.system-monitor-next-applet icon-display false
 gsettings --schemadir $SCHEMA_DIR set org.gnome.shell.extensions.system-monitor-next-applet memory-graph-width 50
