@@ -226,9 +226,8 @@ rmdir ~/Pictures &> /dev/null || true
 rmdir ~/Public &> /dev/null || true
 rmdir ~/Templates &> /dev/null || true
 rmdir ~/Videos &> /dev/null || true
-
-# Delete default directories from bookmarks
-truncate -s 0 ~/.config/user-dirs.dirs
+echo "enabled=False" > ~/.config/user-dirs.conf
+rm ~/.config/gtk-3.0/bookmarks
 
 # Disable Ubuntu's stupid tiling behaviour
 gnome-extensions disable tiling-assistant@ubuntu.com
