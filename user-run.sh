@@ -138,18 +138,17 @@ fi
 git clone https://github.com/mgalgs/gnome-shell-system-monitor-next-applet.git $HOME/bin/gnome-shell-system-monitor-next-applet
 cd $HOME/bin/gnome-shell-system-monitor-next-applet
 make install gschemas.install-and-compile
-SCHEMA_DIR=$HOME/.local/share/gnome-shell/extensions/system-monitor-next@paradoxxx.zero.gmail.com/schemas
-gsettings --schemadir $SCHEMA_DIR set org.gnome.shell.extensions.system-monitor-next-applet icon-display false
-gsettings --schemadir $SCHEMA_DIR set org.gnome.shell.extensions.system-monitor-next-applet memory-graph-width 50
-gsettings --schemadir $SCHEMA_DIR set org.gnome.shell.extensions.system-monitor-next-applet memory-show-text false
-gsettings --schemadir $SCHEMA_DIR set org.gnome.shell.extensions.system-monitor-next-applet cpu-graph-width 50
-gsettings --schemadir $SCHEMA_DIR set org.gnome.shell.extensions.system-monitor-next-applet cpu-show-text false
-gsettings --schemadir $SCHEMA_DIR set org.gnome.shell.extensions.system-monitor-next-applet net-graph-width 50
-gsettings --schemadir $SCHEMA_DIR set org.gnome.shell.extensions.system-monitor-next-applet net-show-text false
-gsettings --schemadir $SCHEMA_DIR set org.gnome.shell.extensions.system-monitor-next-applet thermal-display true
-gsettings --schemadir $SCHEMA_DIR set org.gnome.shell.extensions.system-monitor-next-applet thermal-graph-width 50
-gsettings --schemadir $SCHEMA_DIR set org.gnome.shell.extensions.system-monitor-next-applet thermal-show-text false
-gsettings --schemadir $SCHEMA_DIR set org.gnome.shell.extensions.system-monitor-next-applet thermal-sensor-label 'k10temp - Tctl'
+gsettings set org.gnome.shell.extensions.system-monitor-next-applet icon-display false
+gsettings set org.gnome.shell.extensions.system-monitor-next-applet memory-graph-width 50
+gsettings set org.gnome.shell.extensions.system-monitor-next-applet memory-show-text false
+gsettings set org.gnome.shell.extensions.system-monitor-next-applet cpu-graph-width 50
+gsettings set org.gnome.shell.extensions.system-monitor-next-applet cpu-show-text false
+gsettings set org.gnome.shell.extensions.system-monitor-next-applet net-graph-width 50
+gsettings set org.gnome.shell.extensions.system-monitor-next-applet net-show-text false
+gsettings set org.gnome.shell.extensions.system-monitor-next-applet thermal-display true
+gsettings set org.gnome.shell.extensions.system-monitor-next-applet thermal-graph-width 50
+gsettings set org.gnome.shell.extensions.system-monitor-next-applet thermal-show-text false
+gsettings set org.gnome.shell.extensions.system-monitor-next-applet thermal-sensor-label 'k10temp - Tctl'
 
 # Generate GPG key
 if test -f ~/.ssh/gpg.pub
