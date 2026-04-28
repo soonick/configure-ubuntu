@@ -11,6 +11,7 @@ myself=`logname`
 myid=`id -u $myself`
 email=$1
 name=$2
+current_folder=$(pwd)
 
 # Set up aliases and other shell configurations
 cp ./customizations.bash ~/.customizations.bash
@@ -189,12 +190,13 @@ else
 fi
 
 # Firefox settings
+echo "Configuring firefox"
 profilePath=`find ~/snap/firefox/common/.mozilla/firefox -maxdepth 1 -type d | grep default`
 cp ./user.js ${profilePath}/user.js
 
 # Download firefox extensions
 mkdir -p $HOME/bin/firefox-extensions
-extension=$(curl -L https://github.com/gorhill/uBlock/releases/latest | grep -Po "https://addons.mozilla.org/firefox/downloads.*?xpi")
+extension=$(curl -L https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/ | grep -Po "https://addons.mozilla.org/firefox/downloads.*?xpi")
 wget -O $HOME/bin/firefox-extensions/ublock.xpi $extension
 extension=$(curl -L https://addons.mozilla.org/en-US/firefox/addon/bitwarden-password-manager/ | grep -Po "https://addons.mozilla.org/firefox/downloads.*?xpi")
 wget -O $HOME/bin/firefox-extensions/bitwarden.xpi $extension
@@ -204,6 +206,7 @@ extension=$(curl -L https://addons.mozilla.org/en-US/firefox/addon/video-downloa
 wget -O $HOME/bin/firefox-extensions/video-downloadhelper.xpi $extension
 
 # Dropbox
+echo "Configuring dropbox"
 cd ~ && wget -4 -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
 mkdir -p $HOME/.config/autostart
 cat >$HOME/.config/autostart/dropbox.desktop <<EOF
