@@ -199,8 +199,8 @@ extension=$(curl -L https://addons.mozilla.org/en-US/firefox/addon/ublock-origin
 wget -O $HOME/bin/firefox-extensions/ublock.xpi $extension
 extension=$(curl -L https://addons.mozilla.org/en-US/firefox/addon/bitwarden-password-manager/ | grep -Po "https://addons.mozilla.org/firefox/downloads.*?xpi")
 wget -O $HOME/bin/firefox-extensions/bitwarden.xpi $extension
-extension=$(curl -L https://addons.mozilla.org/en-US/firefox/addon/languagetool/ | grep -Po "https://addons.mozilla.org/firefox/downloads.*?xpi")
-wget -O $HOME/bin/firefox-extensions/languagetool.xpi $extension
+extension=$(curl -L https://addons.mozilla.org/en-US/firefox/addon/private-grammar-checker-harper/ | grep -Po "https://addons.mozilla.org/firefox/downloads.*?xpi")
+wget -O $HOME/bin/firefox-extensions/harper.xpi $extension
 extension=$(curl -L https://addons.mozilla.org/en-US/firefox/addon/video-downloadhelper/ | grep -Po "https://addons.mozilla.org/firefox/downloads.*?xpi")
 wget -O $HOME/bin/firefox-extensions/video-downloadhelper.xpi $extension
 
