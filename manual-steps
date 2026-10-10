@@ -1,6 +1,5 @@
 Script ran successfully. Some steps couldn't be automated:
 
-- Restart system and run this command to enable system monitor extension: "gnome-extensions enable system-monitor-next@paradoxxx.zero.gmail.com"
-- Install extensions from ~/bin/firefox-extensions
-- Add SSH key to github (~/.ssh/github_rsa.pub)
-- Add GPG key to github (~/.ssh/gpg.pub)
+- Restart the system so the GNOME Shell loads the system monitor applet and firefox loads the installed extensions
+- sh copy-ssh.sh   # copies the SSH key to your clipboard and opens GitHub
+- sh copy-gpg.sh   # copies the GPG key to your clipboard and opens GitHub

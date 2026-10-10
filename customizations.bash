@@ -1,9 +1,9 @@
 # Env variables
-export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64/"
+export JAVA_HOME="/usr/lib/jvm/default-java"
 export EDITOR=nvim
 
 # Start tmux by default when openning a terminal
-if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+if command -v tmux &> /dev/null && [ -n "${PS1:-}" ] && [[ ! "${TERM:-}" =~ screen ]] && [[ ! "${TERM:-}" =~ tmux ]] && [ -z "${TMUX:-}" ]; then
   exec tmux
 fi
 
@@ -38,11 +38,14 @@ set -o vi
 
 # Functions
 
-## Create github branch that tracks origin/master
+## Create github branch that tracks the origin default branch
 ## 1 - Branch name
 gcb() {
   git checkout -b "$1"
-  git branch --set-upstream-to=origin/master $1
+  local base
+  base=$(git symbolic-ref --short refs/remotes/origin/HEAD 2> /dev/null | sed 's@^origin/@@') || true
+  base=${base:-master}
+  git branch --set-upstream-to="origin/$base" "$1"
 }
 
 ## Find and replace in folder
