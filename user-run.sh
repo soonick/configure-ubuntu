@@ -284,6 +284,9 @@ gsettings set org.gnome.desktop.wm.keybindings maximize "['<Super>Up']"
 # Allow audio over aplification
 gsettings set org.gnome.desktop.sound allow-volume-above-100-percent 'true'
 
+# Install opencode
+curl -fsSL https://opencode.ai/v2/install | bash
+
 # Things that couldn't be automated
 echo ""
 cat "$script_dir/manual-steps"

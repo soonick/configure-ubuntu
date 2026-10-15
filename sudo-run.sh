@@ -5,6 +5,9 @@
 # Stop if there is any error
 set -Eeuo pipefail
 
+# Remove stale riseup-vpn PPA source from previous failed runs (PPA doesn't support resolute/26.04)
+rm -f /etc/apt/sources.list.d/leapcodes-ubuntu-riseup-vpn-resolute.sources
+
 # Update system
 apt-get update -y
 
@@ -96,6 +99,65 @@ else
   curl -L -o "/home/$myself/bin/kubectl" \
     "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/$kubectl_arch/kubectl"
   install -o root -g root -m 0755 "/home/$myself/bin/kubectl" /usr/local/bin/kubectl
+fi
+
+# Install brave browser
+if command -v brave-browser &> /dev/null
+then
+  echo "Brave browser is already installed"
+else
+  echo "Installing brave browser"
+  curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg \
+    https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+  echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=$(dpkg --print-architecture)] https://brave-browser-apt-release.s3.brave.com/ stable main" \
+    > /etc/apt/sources.list.d/brave-browser-release.list
+  apt-get update -y
+  apt-get install -y brave-browser
+fi
+
+# Install brave browser extensions automatically via managed policy.
+# Extensions are force-installed on next Brave launch, similar to how
+# Firefox extensions are dropped into the profile folder.
+mkdir -p /etc/brave/policies/managed
+cat > /etc/brave/policies/managed/extensions.json <<'EOF'
+{
+  "ExtensionInstallForcelist": [
+    "nngceckbapebfimnlniiiahkandclblb;https://clients2.google.com/service/update2/crx",
+    "lodbfhdipoipcjmlebjbgmmgekckhpfb;https://clients2.google.com/service/update2/crx",
+    "lmjnegcaeklhafolokijcfjliaokphfk;https://clients2.google.com/service/update2/crx"
+  ]
+}
+EOF
+
+# Install proton vpn
+if command -v protonvpn &> /dev/null
+then
+  echo "Proton VPN is already installed"
+else
+  echo "Installing Proton VPN"
+  wget -O /tmp/protonvpn-stable-release.deb https://repo.protonvpn.com/debian/dists/stable/main/binary-all/protonvpn-stable-release_1.0.8_all.deb
+  dpkg -i /tmp/protonvpn-stable-release.deb
+  apt-get update -y
+  apt-get install -y proton-vpn-gnome-desktop
+  rm -f /tmp/protonvpn-stable-release.deb
+fi
+
+# Install riseup vpn
+if command -v riseup-vpn &> /dev/null
+then
+  echo "Riseup VPN is already installed"
+else
+  echo "Installing Riseup VPN"
+  # RiseupVPN is in Ubuntu's universe repository. The LEAP PPA only supports
+  # older releases (noble, jammy), not resolute+, so install from universe instead.
+  # Remove any leftover PPA source file from a previous failed run.
+  rm -f /etc/apt/sources.list.d/leapcodes-ubuntu-riseup-vpn-resolute.sources
+  if ! apt-cache show riseup-vpn &>/dev/null
+  then
+    add-apt-repository -y universe
+    apt-get update -y
+  fi
+  apt-get install -y riseup-vpn
 fi
 
 chown -R "$myself" "/home/$myself/bin"
