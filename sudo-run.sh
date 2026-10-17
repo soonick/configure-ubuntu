@@ -160,5 +160,23 @@ else
   apt-get install -y riseup-vpn
 fi
 
+# Install gcloud (Google Cloud CLI)
+if command -v gcloud &> /dev/null
+then
+  echo "gcloud is already installed"
+else
+  echo "Installing gcloud"
+  install -m 0755 -d /etc/apt/keyrings
+  curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg \
+    | gpg --batch --yes --dearmor -o /etc/apt/keyrings/cloud.google.gpg
+  chmod a+r /etc/apt/keyrings/cloud.google.gpg
+
+  echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" \
+    > /etc/apt/sources.list.d/google-cloud-sdk.list
+
+  apt-get update -y
+  apt-get install -y google-cloud-cli
+fi
+
 chown -R "$myself" "/home/$myself/bin"
 chgrp -R "$myself" "/home/$myself/bin"
