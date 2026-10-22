@@ -27,7 +27,7 @@ fi
 . ~/.bashrc
 
 # Hide stuff I don't want in my home folder
-for entry in snap Desktop go Downloads; do
+for entry in Desktop Documents Downloads go snap; do
   if ! grep -qx "$entry" ~/.hidden 2> /dev/null
   then
     echo "$entry" >> ~/.hidden
